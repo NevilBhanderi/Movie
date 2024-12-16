@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+   .navbar-brand img {
+      height: 50px;
+    }
+    .custom-search {
+      width: 50%;
+    }
+    .btn-sign-in {
+      background-color: #ff3d60;
+      color: white;
+    }
+    .btn-sign-in:hover {
+      background-color: #e62e50;
+    }
+   
+         #img-mcard{
+          /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+          height: 100vh;
+          width: 20%;
+         }
+         #img-card{
+          
+          border: 5px solid;
+          border-radius: 10px;
+         }
+        .rating {
+            color: #ffcc00; 
+            font-size: 1rem;
+        }
+        .votes, .genre {
+            font-size: 0.9rem;
+            
+        }
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+        button {
+          width: 50%;
+            background-color: #198754;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 3px;
+            color: white;
+        }
+        button:hover {
+            background-color: #145c32;
+        }
+</style>
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="../uploads/pngegg.png" alt="Logo"> 
+      </a>
+      <form class="d-flex flex-grow-1 mx-3">
+        <input class="form-control custom-search" type="search" placeholder="Search for Movies, Events, Plays, Sports and Activities" aria-label="Search">
+      </form>
+      <div class="d-flex align-items-center">
+        <div class="dropdown me-3">
+          <a class="dropdown-toggle text-decoration-none text-dark" href="#" role="button" id="cityDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            Select Your ......
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="cityDropdown">
+            <li><a class="dropdown-item" href="#">Rajkot</a></li>
+            <li><a class="dropdown-item" href="#">Ahemdabad</a></li>
+            <li><a class="dropdown-item" href="#">Surat</a></li>
+            <li><a class="dropdown-item" href="#">Jamnagar</a></li>
+            <li><a class="dropdown-item" href="#">Morbi</a></li>
+            <li><a class="dropdown-item" href="#">Vadodara</a></li>
+          </ul>
+        </div>
+        <button class="btn btn-sign-in me-3"><a href="/addData">Add</a></button>
+        <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+   
+
+   
+
+    <div class="container mt-4" >
+      <div class="row">
+          <% data.forEach((e, i) => { %>
+              <div class="col-md-2 m-3 p-0" id="img-mcard">
+                  <div class="card m-0 p-0 border border-0" >
+                    <div class="mb-3 p-0 bg-dark" id="img-card">
+                         <img src="<%= e.image %>" class="card-img p-0 m-0" style="height: 50vh;" >
+                        <hr class="fw-bold  m-0 p-1">
+                        <span class="rating p-0 m-0"><i class="fa-solid fa-star p-0 m-0"></i> <%= e.rating %></span>
+                    </div>
+                      
+                      
+                      <div class="card-img d-flex flex-column justify-content-end ">
+                        
+                          <h5 class="card-title mb-1"><%= e.moviename %></h5>
+                          <p class="genre mb-0">Genre: <%= e.genre %></p>
+                          <p class="genre mb-0">Release Date: <%= e.releasedate %></p>
+                          <p class="genre mb-0">Language: <%= e.language %></p>
+                          
+                          <div class="mt-2 d-flex">
+                              <button>
+                                  <a href="/editData?id=<%= e.id %>">Edit</a>
+                              </button>
+                              <button class="btn btn-danger">
+                                  <a href="/deleteData?id=<%= e.id %>" style="color: white;">Delete</a>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          <% }) %>
+      </div>
+  </div>
+  
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
